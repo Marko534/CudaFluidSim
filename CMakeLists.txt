@@ -11,13 +11,16 @@ find_package(CUDA REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CUDA_STANDARD 14)
 
+# Suppress GLM warnings
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -diag-suppress=20012")
+
 # Add executable
 add_executable(main main.cu)
 
 # Link CUDA libraries properly
 target_link_libraries(main PRIVATE
     ${CUDA_LIBRARIES}      # Use the correct CUDA runtime libraries
-    cufft                  # 🔥 Add cuFFT library
+    cufft                  # Add cuFFT library
     OpenGL::GL            # Use modern CMake target for OpenGL
     glfw                  # Use the target provided by glfw3
     GLEW::GLEW            # Use modern CMake target for GLEW
@@ -46,7 +49,3 @@ target_include_directories(main PRIVATE
 
 # Fix CUDA linking
 set_target_properties(main PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-
-# CUDA-specific flags (optional)
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Wno-deprecated-gpu-targets")
-
