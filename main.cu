@@ -123,6 +123,60 @@ void setVertVecs(const glm::vec2 v, const int x, const int y)
     setVerticalVec<<<1, 1>>>(v, x, y);
 }
 
+// init barrier
+inline __device__ void init_barrier()
+{
+    const int id = threadIdx.x + blockIdx.x * blockDim.x;
+    barrier[id] = false;
+}
+
+// set a barrier for a single cell
+inline __device__ void set_barrier(const int x, const int y)
+{
+    barrier[x + y * grid_l] = true;
+}
+
+__global__ void setBarrier(const int x, const int y)
+{
+    set_barrier(x, y);
+}
+
+void setBar(const int x, const int y)
+{
+    setBarrier<<<1, 1>>>(x, y);
+}
+
+// reset kernels
+__global__ void resetVectors()
+{
+    init_vec();
+}
+
+__global__ void resetVectorsBuffer()
+{
+    init_vecBuffer();
+}
+
+__global__ void resetBarriers()
+{
+    init_barrier();
+}
+
+void resetVecs()
+{
+    resetVectors<<<512, grid_l * grid_h / 512>>>();
+}
+
+void resetVecsBuf()
+{
+    resetVectorsBuffer<<<512, grid_l * grid_h / 512>>>();
+}
+
+void resetBars()
+{
+    resetBarriers<<<512, grid_l * grid_h / 512>>>();
+}
+
 int main()
 {
 
