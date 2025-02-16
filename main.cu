@@ -587,7 +587,7 @@ int main()
     {
         updateFluid(fluidvel);
 
-        if ((iter & (iter - 1)) == 0 && iter >= 16)
+        if ((iter & (iter - 1)) == 0 && iter >= 64)
         {
             moveMainArrayToCPU();
             fillColorArray(fluidvel);
