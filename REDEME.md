@@ -3,6 +3,7 @@
 This project simulates fluid dynamics using CUDA for parallel computation. The simulation includes barriers (e.g., circles and squares) that affect the fluid flow, and the results are visualized as images saved at specific iterations.
 
 ## Requirements
+
 - **CMake**
 - **CUDA Toolkit**: Ensure you have the CUDA toolkit installed on your system.
 - **GLM Library**: The OpenGL Mathematics (GLM) library is used for vector and matrix operations.
@@ -12,10 +13,10 @@ This project simulates fluid dynamics using CUDA for parallel computation. The s
 
 1. **Install Dependencies**:
    - Install the CUDA toolkit from [NVIDIA's official website](https://developer.nvidia.com/cuda-toolkit).
-   - Install the GLM library. You can typically install it via your package manager:
-   For Fedora and RedHat based systems 
+   - Install the GLM library. You can typically install it via your package manager. For Fedora and RedHat based systems
+
    ```bash
-   sudo dnf install glm-devil
+    sudo dnf install glm-devil
    ```
 
 2. **Compile the Code**:
@@ -42,4 +43,3 @@ This project simulates fluid dynamics using CUDA for parallel computation. The s
 - **Grid Size**: You can change the grid size by modifying the `grid_l` and `grid_h` macros at the top of the code.
 - **Barriers**: You can add or modify barriers by changing the initialization code in the `main` function.
 - **Fluid Velocity**: Adjust the `fluidvel` variable to change the initial fluid velocity.
-
