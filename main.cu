@@ -18,8 +18,8 @@ cudaError_t ercall;
         exit(EXIT_FAILURE);                                                                                            \
     }
 
-#define grid_l 480
-#define grid_h 270
+#define grid_l 720
+#define grid_h 480
 
 #define overrelax_const 1.0f
 
@@ -313,9 +313,9 @@ void gaussianDivergenceSolver(const int passes)
     for (int p = 0; p < passes; p++)
     {
         resetVecsBuf();
-        divergenceGaussianB<<<threads_divergence, blocks_divergence>>>();
+        divergenceGaussianB<<<blocks_divergence, threads_divergence>>>();
         cudaDeviceSynchronize();
-        divergenceGaussianW<<<threads_divergence, blocks_divergence>>>();
+        divergenceGaussianW<<<blocks_divergence, threads_divergence>>>();
         cudaDeviceSynchronize();
         addBuf();
 
