@@ -1,10 +1,3 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <curand_kernel.h>
-#include <time.h>
-#include <string.h>
 #include <glm/glm.hpp>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
